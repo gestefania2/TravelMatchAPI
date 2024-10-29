@@ -15,9 +15,8 @@ Funcionalidades claves de la web:
 # FiltrosDeBúsqueda
 
 1. Zona geográfica (continente/País)
-2. Clima (frio-calor)
-3. Economia (low cost €/ medium €€ / luxury€€€)
-4. Tipo de viaje (relax/ cultura/ aventura/ gastronomía) Establecer actividades en función de la elección.
+2. Economia (low cost €/ medium €€ / luxury€€€)
+3. Tipo de viaje (relax/ cultura/ aventura/ gastronomía) Establecer actividades en función de la elección.
 Recomendación fechas según destino (no incluir como filtro)
 
 # InstalaciónYConfiguraciónDeLaAPP
