@@ -13,28 +13,34 @@
             </figure>
             <ul class="navlist">
                 <li><a href="">¿A dónde viajamos?</a></li>
-                <li><a href="">Viajes Favoritos ★</a></li>
+                <li><a href="">Viajes Favoritos ★ </a></li>
             </ul>
         </nav>
     </header>
     <section>
+        <h2>¿A Dónde te gustaría viajar?</h2>
         <form id="travelForm">
+            <label for="continent">Continente</label>
+            <select id="continent" name="continent" required>
+                <option value="">Selecciona un continente</option>
+            </select>
         
-            <label for="country">País de Destino:</label>
-            <select id="country" name="country" required>
-                <!-- Aquí puedes cargar la lista de países con JavaScript -->
+                <label for="country">País</label>
+                <select id="country" name="country"required>
+                    <option value="">Selecciona un país</option>
             </select>
             
-            <label for="economy">Economía:</label>
+            <label for="economy">Economía</label>
             <select id="economy" name="economy" required>
+                <option value="">selecciona una opcion</option>
                 <option value="low">Low Cost (€)</option>
                 <option value="medium">Medium (€€)</option>
                 <option value="luxury">Luxury (€€€)</option>
             </select>
 
-                 <!-- Tipo de viaje -->
-        <label for="travelType">Tipo de Viaje:</label>
+        <label for="travelType">¿Qué tipo de viaje quieres?</label>
         <select id="travelType" name="travelType" required>
+            <option value="">selecciona una opcion</option>
             <option value="relax">Relax</option>
             <option value="culture">Cultura</option>
             <option value="adventure">Aventura</option>
@@ -43,8 +49,6 @@
 
         <button type="button" onclick="getRecommendations()">Empieza la aventura...</button>
     </form>
-    
-       <!-- poner <script src="ruta.js"></script> --> 
     </section>
     <footer class="pieDePagina">
         <ul class="Compañia">
@@ -86,6 +90,6 @@
                     alt="Instagram" class="social-icon"></a>
         </div>
     </footer>
-    
+    <script src= '/js/restCountriesApi.js'></script>
 </body>
 </html>
