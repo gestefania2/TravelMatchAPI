@@ -1,15 +1,13 @@
 
 // Función principal para obtener las recomendaciones
 async function getRecommendations() {
+    const continent = document.getElementById ('continent').value;
     const country = document.getElementById('country').value;
-    const economy = document.getElementById('economy').value;
-    const travelType = document.getElementById('travelType').value;
+    const categoriaviaje = document.getElementById('categoriaviaje').value;
 
-    // Obtén opciones económicas desde Travelpayouts
-    const travelCost = await getTravelCost(country);
 
-    // Obtén actividades desde Yelp según el tipo de viaje
-    const activities = await getYelpActivities(country, travelType);
+    // Obtén actividades desde TripAdvisor según el tipo de viaje
+    const activities = await getYelpActivities(country, categoriaviaje);
 
     // Mostrar resultados
     displayResults(travelCost, activities);
@@ -28,7 +26,7 @@ async function getTravelCost(country) {
 }
 
 // Función para obtener actividades desde Yelp según el tipo de viaje
-async function getYelpActivities(city, travelType) {
+async function getYelpActivities(city, categoriaviaje) {
     const apiKey = 'YOUR_YELP_API_KEY';
     const categories = {
         relax: 'spas',
@@ -36,7 +34,7 @@ async function getYelpActivities(city, travelType) {
         adventure: 'hiking',
         gastronomy: 'restaurants'
     };
-    const category = categories[travelType];
+    const category = categories[categoriaviaje];
     try {
         const response = await fetch(`https://api.yelp.com/v3/businesses/search?location=${city}&categories=${category}`, {
             headers: {

@@ -15,7 +15,6 @@ Funcionalidades claves de la web:
 # FiltrosDeBúsqueda
 
 1. Zona geográfica (continente/País)
-2. Economia (low cost €/ medium €€ / luxury€€€)
 3. Tipo de viaje (relax/ cultura/ aventura/ gastronomía) Establecer actividades en función de la elección.
 Recomendación fechas según destino (no incluir como filtro)
 
@@ -27,7 +26,7 @@ Recomendación fechas según destino (no incluir como filtro)
 
 # ApiUtilizada
 
-Amadeus for Developers (trabaja con una API Key, nos tenemos que crear una cuenta) https://youtu.be/Lyy26SlgBZU 
+Apis (REST Countries, TravelPayOuts, UnplashApi)
 
 
 
