@@ -1,27 +1,25 @@
-class cityInfo {
-    constructor(continent,country,city){
+class countryInfo {
+    constructor(continent,country,capital){
     this.continent = continent;
     this.country = country;
-    this.city = city;
-    //this.imageCity = imageCity;
+    this.capital = capital;
+    //this.imageCountry = imageCountry;
 }
-
 
 
 render() {
     const section = document.createElement("section");
-    //const imageCity = document.createElement("img");
-    const cityName = document.createElement('h1');
+    //const imageCountry = document.createElement("img");
+    const capitalName = document.createElement('h1');
     const countryName = document.createElement("h2");
     const continentName = document.createElement ("p");
   
     
 
     section.classList.add("city-card");
-    //imageCity.src = this.imageCity
+    //imageCountry.src = this.imageCountry
     cityName.innerText = this.country, this.continent;
-
-    section.append(image, continentName, countryName, cityName);
+    section.append(image, continentName, countryName, capitalName);
     return section;
 }
 

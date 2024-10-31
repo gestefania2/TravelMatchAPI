@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/commonStyle.css">
+    <link rel="stylesheet" href="/css/formulario.css">
     <link rel="icon" href="/images/favicongrande.png" type="icon">
     <title>TravelMatch</title>
 </head>
@@ -19,7 +20,7 @@
             </ul>
         </nav>
     </header>
-    <section>
+    <section class="formulario">
         <h2>¿A Dónde te gustaría viajar?</h2>
         <form id="travelForm">
             <label for="continent">Continente</label>
@@ -31,11 +32,9 @@
             <select id="country" name="country"required>
                 <option value="">Selecciona un país</option>
             </select>
-            <label for="ciudad">Selecciona una ciudad:</label>
-            <select id="ciudad">
-         
+            
             </select>
-            <button id="buscar-restaurantes">Buscar Restaurantes</button>
+            <button id="buscarrestaurantes"type="submit">Buscar Restaurantes</button>
             <div id="resultado"></div>
 
         </select>
@@ -77,14 +76,13 @@
         <div class="sub-footer">
             <hr class="divider">
             <p>Condiciones generales | Política de calidad | Aviso legal | © TravelMatch 2024</p>
-            <a href="https://www.facebook.com" target="_blank"><img src="images/footerLogos/fbblanco.png" alt="Facebook"
+            <a href="https://www.facebook.com" target="_blank"><img src="/images//fbnegro.png" alt="Facebook"
                     class="social-icon"></a>
-            <a href="https://www.instagram.com" target="_blank"><img src="images/footerLogos/instablanco.png"
+            <a href="https://www.instagram.com" target="_blank"><img src="/images/instanegro.png"
                     alt="Instagram" class="social-icon"></a>
         </div>
     </footer>
-    <script src= '/js/restCountriesApi.js'></script>
-    <script src="/js/new.js"></script>
-    <script src="js/main.js"></script>
+    <script src= '/js/restCountriesApi.js' type="module"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

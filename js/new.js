@@ -1,7 +1,4 @@
-import {apiKey} from "./apiKey.js";
-
-
-document.getElementById('buscar-restaurantes').addEventListener('click', async () => {
+/*document.getElementById('buscar-restaurantes').addEventListener('click', async () => {
     const ciudad = document.getElementById('ciudad').value; // Obtiene el valor de la ciudad seleccionada
     const url = `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${ciudad}`;
     
@@ -44,4 +41,4 @@ function mostrarRestaurantes(restaurantes) {
         `;
         resultado.appendChild(div);
     });
-}
+}*/

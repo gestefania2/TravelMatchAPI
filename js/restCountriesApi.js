@@ -1,3 +1,5 @@
+import { getRestaurants } from "./amadeusApi.js";
+
 //para obtner la lista de todos los paises
 const BASE_URL = 'https://restcountries.com/v3.1/all';
 
@@ -86,13 +88,42 @@ function populateCountrySelect(countries) {
     countries.forEach(country => {
         const option = document.createElement('option');
         const countryName = country.translations?.spa?.common || country.name.common; // Nombre en español o común
-        option.value = countryName;
+        const latlng = country.capitalInfo.latlng || country.latlng;
+        option.value = countryName +","+ latlng.toString();
         option.textContent = countryName;
         countrySelect.appendChild(option);
+        
     });
 }
 
-// Inicializar datos al cargar (para que no salga ninguna búsqueda seleccionada)
+const form = document.getElementById('travelForm');
+form.addEventListener("submit",(evento) => {
+    evento.preventDefault()
+  const valorpaislatlng =  evento.target.country.value
+  const arrayPaisLatLng = valorpaislatlng.split(",");
+  const country = arrayPaisLatLng[0];
+  const lat = arrayPaisLatLng[1];
+  const lng = arrayPaisLatLng[2];
+  console.log (`país: ${country}, latitud: ${lat}, longitud: ${lng}`);
+  getRestaurants (lat, lng);
+  
+
+} )
+
+
+
+
+
+
+
+/*"capitalInfo": {
+    "latlng": [
+        42.5,
+        1.52*/
+
+
+
+/* Inicializar datos al cargar (para que no salga ninguna búsqueda seleccionada)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const countries = await fetchCountries();
@@ -102,11 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
-});
-
-
-
-
+}); */
 
 /* Función para obtener recomendaciones cuando se hace clic en el botón
 function getRecommendations() {
@@ -118,10 +145,4 @@ function getRecommendations() {
     // Aquí puedes agregar la lógica para mostrar recomendaciones según las selecciones
     console.log(`Continente seleccionado: ${selectedContinent}`);
     console.log(`País seleccionado: ${selectedCountry}`);
-
-
-    // Ejemplo de cómo podrías mostrar recomendaciones
-    alert(`Recomendaciones: \nContinente: ${selectedContinent} \nPaís: ${selectedCountry}`);
-}
-
 */

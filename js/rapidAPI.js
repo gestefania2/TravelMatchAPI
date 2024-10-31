@@ -1,4 +1,4 @@
-const url = 'https://ai-trip-planner.p.rapidapi.com/?days=3&destination=London%2CUK';
+const url = 'https://ai-trip-planner.p.rapidapi.com/?';
 const options = {
 	method: 'GET',
 	headers: {
