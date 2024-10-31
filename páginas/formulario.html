@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelMatch</title>
+    <link rel="stylesheet" href="/css/commonStyle.css">
 </head>
 <body>
     <header>
@@ -24,25 +25,22 @@
             <select id="continent" name="continent" required>
                 <option value="">Selecciona un continente</option>
             </select>
-        
-                <label for="country">País</label>
-                <select id="country" name="country"required>
-                    <option value="">Selecciona un país</option>
-            </select>
 
-        <label for="categoriasviaje">Tipo de viaje</label>
-        <select id="categoriasviaje" name="categoriasviaje" required>
-            <option value="">selecciona una opcion</option>
-            <option value="relax">Relax</option>
-            <option value="cultura">Cultura</option>
-            <option value="aventura">Aventura</option>
-            <option value="gastronomia">Gastronomía</option>
+            <label for="country">País</label>
+            <select id="country" name="country"required>
+                <option value="">Selecciona un país</option>
+            </select>
+            <label for="ciudad">Selecciona una ciudad:</label>
+            <select id="ciudad">
+         
+            </select>
+            <button id="buscar-restaurantes">Buscar Restaurantes</button>
+            <div id="resultado"></div>
+
         </select>
-        <button type="button" onclick="getRecommendations()">Empieza la aventura...</button>
+
     </form>
-    <div id="resultados">
-    <!-- Aquí se mostrarán los resultados -->
-    </div>
+   
     </section>
     <footer class="pieDePagina">
         <ul class="Compañia">
@@ -85,7 +83,7 @@
         </div>
     </footer>
     <script src= '/js/restCountriesApi.js'></script>
-    <script src= '/js/tripadvisorAPI.js'></script>      
-
+    <script src="/js/new.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

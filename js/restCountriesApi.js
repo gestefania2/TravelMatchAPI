@@ -22,8 +22,12 @@ async function fetchCountries() {
 
 // Función para obtener una lista de continentes únicos
 function getContinents(countries) {
-    const continents = new Set(countries.map(country => country.region));
-    return Array.from(continents).filter(Boolean); // Elimina valores vacíos
+    // Excluye la Antártida de la lista de continentes
+    const continents = new Set(countries
+        .map(country => country.region)
+        .filter(region => region && region !== 'Antarctic')
+    );
+    return Array.from(continents);
 }
 
 /* Función para llenar el selector de continentes*/
@@ -39,9 +43,6 @@ function populateContinentSelect(continents) {
         switch (continent) {
             case "Africa":
                 option.textContent = "África";
-                break;
-            case "Antarctic":
-                option.textContent = "Antártida";
                 break;
             case "Americas":
                 option.textContent = "América";
@@ -59,7 +60,6 @@ function populateContinentSelect(continents) {
                 option.textContent = continent; // Si no hay traducción, usar el nombre original
                 break;
         }
-
         continentSelect.appendChild(option);
     });
 }
@@ -72,7 +72,8 @@ function setupCountryFilter(countries) {
     continentSelect.addEventListener('change', () => {
         const selectedContinent = continentSelect.value;
         // Filtrar países por continente seleccionado
-        const filteredCountries = countries.filter(country => country.region === selectedContinent);
+        const filteredCountries = countries
+            .filter(country => country.region === selectedContinent && country.region !== 'Antarctic');
         populateCountrySelect(filteredCountries);
     });
 }
@@ -91,79 +92,36 @@ function populateCountrySelect(countries) {
     });
 }
 
-// Función para obtener recomendaciones cuando se hace clic en el botón
-function getRecommendations() {
-    const form = document.getElementById('travelForm');
-    const selectedContinent = form.continent.value;
-    const selectedCountry = form.country.value;
-    const selectedEconomy = form.economy.value;
-    const selectedTravelType = form.travelType.value;
-
-    // Aquí puedes agregar la lógica para mostrar recomendaciones según las selecciones
-    console.log(`Continente seleccionado: ${selectedContinent}`);
-    console.log(`País seleccionado: ${selectedCountry}`);
-    console.log(`Economía seleccionada: ${selectedEconomy}`);
-    console.log(`Tipo de viaje seleccionado: ${selectedTravelType}`);
-
-    // Ejemplo de cómo podrías mostrar recomendaciones
-    alert(`Recomendaciones: \nContinente: ${selectedContinent} \nPaís: ${selectedCountry} \nEconomía: ${selectedEconomy} \nTipo de viaje: ${selectedTravelType}`);
-}
-
-
-
-/* Función para llenar el selector de países
-function populateCountrySelect(countries) {
-    const countrySelect = document.getElementById('country');
-    countries.forEach(country => {
-        const option = document.createElement('option');
-        const countryName = country.translations?.spa?.common || country.name.common;
-        option.value = countryName || country.name.common; // Nombre común del país
-        option.textContent = countryName || country.name.common;
-        countrySelect.appendChild(option);
-    });
-}
-
- // Agregar un evento para detectar el cambio de selección de país
- countrySelect.addEventListener('change', async () => {
-    const selectedCountry = countrySelect.value;
-    if (selectedCountry) {
-        await showCountryInfo(selectedCountry);
+// Inicializar datos al cargar (para que no salga ninguna búsqueda seleccionada)
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const countries = await fetchCountries();
+        const continents = getContinents(countries);
+        populateContinentSelect(continents);
+        setupCountryFilter(countries);
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
     }
 });
 
 
-// Función para construir la URL de búsqueda en REST Countries
-function getCountrySearchUrl(countryName) {
-    const baseUrl = 'https://restcountries.com/v3.1/name/';
-    const encodedCountryName = encodeURIComponent(countryName.trim());
-    return `${baseUrl}${encodedCountryName}`;
+
+
+
+/* Función para obtener recomendaciones cuando se hace clic en el botón
+function getRecommendations() {
+    const form = document.getElementById('travelForm');
+    const selectedContinent = form.continent.value;
+    const selectedCountry = form.country.value;
+    
+
+    // Aquí puedes agregar la lógica para mostrar recomendaciones según las selecciones
+    console.log(`Continente seleccionado: ${selectedContinent}`);
+    console.log(`País seleccionado: ${selectedCountry}`);
+
+
+    // Ejemplo de cómo podrías mostrar recomendaciones
+    alert(`Recomendaciones: \nContinente: ${selectedContinent} \nPaís: ${selectedCountry}`);
 }
 
-// Función para mostrar la información del país seleccionado
-async function showCountryInfo(countryName) {
-    const url = getCountrySearchUrl(countryName);
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Error al obtener datos del país');
-        const countryData = await response.json();
-        displayCountryInfo(countryData[0]); // El primer resultado es el país
-    } catch (error) {
-        console.error('Error al mostrar la información del país:', error);
-    }
-}
-
-// Función para mostrar los datos del país en la página
-function displayCountryInfo(country) {
-    const countryInfoDiv = document.getElementById('countryInfo');
-    countryInfoDiv.innerHTML = `
-        <h2>${country.name.common}</h2>
-        <p><strong>Capital:</strong> ${country.capital ? country.capital[0] : 'No disponible'}</p>
-        <p><strong>Región:</strong> ${country.region}</p>
-        <p><strong>Subregión:</strong> ${country.subregion}</p>
-        <p><strong>Población:</strong> ${country.population.toLocaleString()}</p>
-        <p><strong>Área:</strong> ${country.area.toLocaleString()} km²</p>
-        <p><strong>Idioma(s):</strong> ${Object.values(country.languages || {}).join(', ')}</p>
-        <p><strong>Moneda:</strong> ${country.currencies ? Object.values(country.currencies)[0].name : 'No disponible'}</p>
-        <p><strong>Bandera:</strong> <img src="${country.flags.png}" alt="Bandera de ${country.name.common}" width="50"></p> 
-    `;
-}*/
+*/
