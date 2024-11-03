@@ -15,10 +15,17 @@
                 <a href="/index.html"><img class="logotipo" src="/images/logotipook.png" alt="Logotipo"></a>
             </figure>
             <ul class="navlist">
-                <li><a href="">¿A dónde viajamos?</a></li>
+                <li><a href="/páginas/formulario.html">¿A dónde viajamos?</a></li>
                 <li><a href="/páginas/favoritos.html">Restaurantes Favoritos ★ </a></li>
             </ul>
         </nav>
+        <script>
+            document.querySelectorAll("nav a").forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
+        </script>
     </header>
     <section class="formulario">
         <form id="travelForm" class="travelForm">
@@ -41,11 +48,6 @@
 
     </select>
     </form>
-    <section>
-     
-    </section>
-
-   
     </section>
     <footer class="pieDePagina">
         <ul class="Compañia">

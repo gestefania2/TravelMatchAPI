@@ -1,3 +1,28 @@
+nav a.active {
+    color: rgb(190, 48, 48, 0.8);
+
+}
+.favorites-container{
+    background-image: url(/images/environment-friendly-objects-with-copy-space.jpg);
+    margin-top: 40px;
+    min-height: 100vh; 
+    margin: 0; 
+    padding-top: 100px;
+    background-size: 2000px 1200px;
+    padding-bottom: 50px;
+
+}
+
+h2 {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    margin-left: 22px;
+    color:#fff;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 1);
+    font-size: 30px;
+
+}
 .restaurant-header {
     display: flex;
     justify-content: space-between;
@@ -14,10 +39,33 @@
     transition: color 0.2s;
 }
 
-.favorite-btn:hover {
-    color: #ffd700;
+.favorite-btn.active {
+    color:rgb(190, 48, 48, 0.8);
 }
 
-.favorite-btn.active {
-    color: #ffd700;
+.restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.restaurant-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.no-favorites {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #666;
+}
+p a{
+    text-decoration: none;
+    color: rgb(233, 38, 28);
 }

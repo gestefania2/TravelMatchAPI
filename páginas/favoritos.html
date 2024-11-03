@@ -3,112 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurantes Favoritos</title>
-    <style>
-        .restaurants-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .restaurant-card {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-        }
-
-        .restaurant-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .favorite-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #ffd700;
-        }
-
-        .favorite-btn.active {
-            color: #ffd700;
-        }
-
-        .no-favorites {
-            text-align: center;
-            padding: 20px;
-            font-size: 1.2rem;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/commonStyle.css">
+    <link rel="stylesheet" href="/css/favoritos.css">
+    <link rel="icon" href="/images/favicongrande.png" type="icon">
+    <title>TravelMatch</title>
 </head>
 <body>
-    <h1>Mis Restaurantes Favoritos</h1>
-    <div id="favorites"></div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', displayFavorites);
-
-        function displayFavorites() {
-            const favoritesDiv = document.getElementById('favorites');
-            const favorites = JSON.parse(localStorage.getItem('favoriteRestaurants') || '[]');
-
-            if (favorites.length === 0) {
-                favoritesDiv.innerHTML = `
-                    <div class="no-favorites">
-                        <p>No tienes restaurantes favoritos guardados.</p>
-                    </div>`;
-                return;
-            }
-
-            const gridContainer = document.createElement('div');
-            gridContainer.classList.add('restaurants-grid');
-
-            favorites.forEach(restaurant => {
-                const tags = restaurant.tags || {};
-                
-                const card = document.createElement('div');
-                card.classList.add('restaurant-card');
-
-                card.innerHTML = `
-                    <div class="restaurant-header">
-                        <h3>${tags.name || 'Restaurante sin nombre'}</h3>
-                        <button class="favorite-btn active" data-id="${restaurant.id}">★</button>
-                    </div>
-                    <div class="restaurant-info">
-                        <p><strong>Tipo de cocina:</strong> ${tags.cuisine || 'No especificada'}</p>
-                        <p><strong>Dirección:</strong> ${tags['addr:street'] || 'No disponible'} ${tags['addr:housenumber'] || ''}</p>
-                        ${tags.opening_hours ? `<p><strong>Horario:</strong> ${tags.opening_hours}</p>` : ''}
-                        ${tags.phone ? `<p><strong>Teléfono:</strong> ${tags.phone}</p>` : ''}
-                        ${tags.website ? `<p><strong>Sitio web:</strong> <a href="${tags.website}" target="_blank" rel="noopener noreferrer">Visitar</a></p>` : ''}
-                    </div>
-                `;
-
-                const favoriteBtn = card.querySelector('.favorite-btn');
-                favoriteBtn.addEventListener('click', () => {
-                    removeFavorite(restaurant.id);
-                    card.remove();
-                    if (document.querySelectorAll('.restaurant-card').length === 0) {
-                        displayFavorites();
-                    }
-                });
-
-                gridContainer.appendChild(card);
+    <header>
+        <nav class="navbar">
+            <figure>
+                <a href="/index.html"><img class="logotipo" src="/images/logotipook.png" alt="Logotipo"></a>
+            </figure>
+            <ul class="navlist">
+                <li><a href="/páginas/formulario.html">¿A dónde viajamos?</a></li>
+                <li><a href="/páginas/favoritos.html">Restaurantes Favoritos ★ </a></li>
+            </ul>
+        </nav>
+        <script>
+            document.querySelectorAll("nav a").forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
             });
+        </script>
+    </header>
 
-            favoritesDiv.innerHTML = '';
-            favoritesDiv.appendChild(gridContainer);
-        }
+    <section class="favorites-container">
+    <h2>Restaurantes Favoritos</h2>
+    <div id="favorites"></div>
+    </section>
 
-        function removeFavorite(restaurantId) {
-            let favorites = JSON.parse(localStorage.getItem('favoriteRestaurants') || '[]');
-            favorites = favorites.filter(fav => fav.id !== restaurantId);
-            localStorage.setItem('favoriteRestaurants', JSON.stringify(favorites));
-        }
-    </script>
+    <footer class="pieDePagina">
+        <ul class="Compañia">
+            <li>
+                <h4>Nosotros</h4>
+            </li>
+            <li><a href="">Quiénes Somos</a></li>
+            <li><a href="">Empleo</a></li>
+        </ul>
+        <ul class="informacion">
+            <li>
+                <h4>Información</h4>
+            </li>
+            <li><a href="">Preguntas Frecuentes</a></li> 
+            <li><a href="">Empleo</a></li>
+            <li><a href="">Publicidad</a></li> 
+        </ul>
+        <ul class="privacidad">
+            <li>
+                <h4>Privacidad y Legalidad</h4>
+            </li>
+            <li><a href="">Política de privacidad.</a></li>
+            <li><a href="">Configuración de cookies.</a></li>
+        </ul>
+        <ul class="contacto">
+            <li>
+                <h4>Contacto</h4>
+            </li>
+            <li>Tlf: (+34) 944 38 94 55</li>
+            <li>Email: travelmatch@company.es</li>
+            <li>C/ Gran Vía de Bilbao, 42 480011 (Vizcaya)</li>
+        </ul>
+        <div class="sub-footer">
+            <hr class="divider">
+            <p>Condiciones generales | Política de calidad | Aviso legal | © TravelMatch 2024</p>
+            <a href="https://www.facebook.com" target="_blank"><img src="/images/fbnegro.png" alt="Facebook"
+                    class="social-icon"></a>
+            <a href="https://www.instagram.com" target="_blank"><img src="/images/instanegro.png"
+                    alt="Instagram" class="social-icon"></a>
+        </div>
+    </footer>
+    <script src= '/js/favoritos.js' type="module"></script>
 </body>
 </html>
