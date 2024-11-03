@@ -29,8 +29,8 @@
 .tituloPortada p {
     position: absolute;
     top: 57%;
-    left: 51%;
-    transform: translate(-57%, -50%);
+    left: 52%;
+    transform: translate(-57%, -52%);
     font-size: 1.3em;
     margin: 0;
     text-align: center;

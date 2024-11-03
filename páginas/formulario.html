@@ -16,30 +16,35 @@
             </figure>
             <ul class="navlist">
                 <li><a href="">¿A dónde viajamos?</a></li>
-                <li><a href="">Viajes Favoritos ★ </a></li>
+                <li><a href="/páginas/favoritos.html">Restaurantes Favoritos ★ </a></li>
             </ul>
         </nav>
     </header>
     <section class="formulario">
-        <h2>¿A Dónde te gustaría viajar?</h2>
-        <form id="travelForm">
-            <label for="continent">Continente</label>
-            <select id="continent" name="continent" required>
+        <form id="travelForm" class="travelForm">
+            <legend><h3>¿Dónde comemos?</h3></legend> 
+
+            <label class="continent" for="continent">Continente:</label>
+            <select class="botonContinent" id="continent" name="continent" required>
                 <option value="">Selecciona un continente</option>
             </select>
 
-            <label for="country">País</label>
-            <select id="country" name="country"required>
+            <label class="country" for="country">País:</label>
+            <select class="botonCountry" id="country" name="country"required>
                 <option value="">Selecciona un país</option>
             </select>
-            
-            </select>
-            <button id="buscarrestaurantes"type="submit">Buscar Restaurantes</button>
-            <div id="resultado"></div>
+    
+            <button class= "boton" id="buscarrestaurantes"type="submit">Buscar Restaurantes</button>
+            <div id="results">
+             
+            </div>
 
-        </select>
-
+    </select>
     </form>
+    <section>
+     
+    </section>
+
    
     </section>
     <footer class="pieDePagina">
@@ -84,5 +89,6 @@
     </footer>
     <script src= '/js/restCountriesApi.js' type="module"></script>
     <script src="/js/main.js"></script>
+  
 </body>
 </html>

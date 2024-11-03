@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurantes Favoritos</title>
+    <style>
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .restaurant-card {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .restaurant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffd700;
+        }
+
+        .favorite-btn.active {
+            color: #ffd700;
+        }
+
+        .no-favorites {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mis Restaurantes Favoritos</h1>
+    <div id="favorites"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', displayFavorites);
+
+        function displayFavorites() {
+            const favoritesDiv = document.getElementById('favorites');
+            const favorites = JSON.parse(localStorage.getItem('favoriteRestaurants') || '[]');
+
+            if (favorites.length === 0) {
+                favoritesDiv.innerHTML = `
+                    <div class="no-favorites">
+                        <p>No tienes restaurantes favoritos guardados.</p>
+                    </div>`;
+                return;
+            }
+
+            const gridContainer = document.createElement('div');
+            gridContainer.classList.add('restaurants-grid');
+
+            favorites.forEach(restaurant => {
+                const tags = restaurant.tags || {};
+                
+                const card = document.createElement('div');
+                card.classList.add('restaurant-card');
+
+                card.innerHTML = `
+                    <div class="restaurant-header">
+                        <h3>${tags.name || 'Restaurante sin nombre'}</h3>
+                        <button class="favorite-btn active" data-id="${restaurant.id}">★</button>
+                    </div>
+                    <div class="restaurant-info">
+                        <p><strong>Tipo de cocina:</strong> ${tags.cuisine || 'No especificada'}</p>
+                        <p><strong>Dirección:</strong> ${tags['addr:street'] || 'No disponible'} ${tags['addr:housenumber'] || ''}</p>
+                        ${tags.opening_hours ? `<p><strong>Horario:</strong> ${tags.opening_hours}</p>` : ''}
+                        ${tags.phone ? `<p><strong>Teléfono:</strong> ${tags.phone}</p>` : ''}
+                        ${tags.website ? `<p><strong>Sitio web:</strong> <a href="${tags.website}" target="_blank" rel="noopener noreferrer">Visitar</a></p>` : ''}
+                    </div>
+                `;
+
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                favoriteBtn.addEventListener('click', () => {
+                    removeFavorite(restaurant.id);
+                    card.remove();
+                    if (document.querySelectorAll('.restaurant-card').length === 0) {
+                        displayFavorites();
+                    }
+                });
+
+                gridContainer.appendChild(card);
+            });
+
+            favoritesDiv.innerHTML = '';
+            favoritesDiv.appendChild(gridContainer);
+        }
+
+        function removeFavorite(restaurantId) {
+            let favorites = JSON.parse(localStorage.getItem('favoriteRestaurants') || '[]');
+            favorites = favorites.filter(fav => fav.id !== restaurantId);
+            localStorage.setItem('favoriteRestaurants', JSON.stringify(favorites));
+        }
+    </script>
+</body>
+</html>

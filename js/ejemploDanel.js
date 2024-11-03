@@ -1,5 +1,3 @@
-import { API_KEY } from "./apiKey.js";
-import { API_SECRET } from "./apiKey.js";
 
 const AMADEUS_URL = 'https://test.api.amadeus.com/v1/';
 
