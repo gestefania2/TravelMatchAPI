@@ -3,9 +3,6 @@ Este proyecto es una plataforma web que tiene como función generar viajes en ba
 También añadiremos una opción de favoritos que almacene las propuestas de viaje que les guste.
 (toda esa info me gustaría gusradarla en una guía de viaje).
 
-# CapturasDePantalla
-(incluir la ruta de la imagen que muestre una parte clave de la interfaz).
-
 # CaracterísticasPrincipales
 Funcionalidades claves de la web:
 - La web nos proporcionaría diversas opciones de viajes, en base a nuestras prefrenecias de viaje.
